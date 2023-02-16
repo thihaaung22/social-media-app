@@ -11,6 +11,10 @@ import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import authRoutes from "./controllers/auth.js";
+import userRoutes from "./controllers/users.js";
+import { register } from "./controllers/auth.js";
+
 /*config*/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,6 +40,13 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage });
+
+/* routes */
+app.post("/auth/register", upload.single("picture"), register);
+
+/* normal routes*/
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 /* DB Config */
 const PORT = process.env.PORT || 6001;
