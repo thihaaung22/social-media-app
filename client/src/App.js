@@ -7,7 +7,7 @@ import Login from "pages/login";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { createTheme } from "@mui/system";
+import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
