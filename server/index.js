@@ -11,12 +11,16 @@ import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan";
 
-import authRoutes from "./controllers/auth.js";
-import userRoutes from "./controllers/users.js";
-import postRoutes from "./controllers/posts.js";
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
+
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./data/index.js";
 
 /*config*/
 const __filename = fileURLToPath(import.meta.url);
@@ -62,6 +66,9 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    /*     User.insertMany(users);
+    Post.insertMany(posts); */
   })
   .catch((error) => {
     console.log(`${error} did not connect.`);
