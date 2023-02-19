@@ -85,7 +85,7 @@ const UserWidget = ({ userId, picturePath }) => {
           <Typography color={medium}>{location}</Typography>
         </Box>
 
-        <Box display="flex" alignItems="center" gap="1rem">
+        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
           <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
           <Typography color={medium}>{occupation}</Typography>
         </Box>
