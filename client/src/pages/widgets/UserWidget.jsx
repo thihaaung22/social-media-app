@@ -19,6 +19,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const navigate = useNavigate();
 
   const token = useSelector((state) => state.token);
+  const loggedInUser = useSelector((state) => state.user);
 
   const [user, setUser] = useState(null);
 
@@ -35,14 +36,20 @@ const UserWidget = ({ userId, picturePath }) => {
     return null;
   }
 
+  let friendsCount = 0;
+  if (loggedInUser._id === userId) {
+    friendsCount = loggedInUser.friends.length;
+  } else {
+    friendsCount = user.friends.length;
+  }
+
   const {
     firstName,
     lastName,
     location,
     occupation,
     viewedProfile,
-    impressions,
-    friends
+    impressions
   } = user;
 
   return (
@@ -69,9 +76,7 @@ const UserWidget = ({ userId, picturePath }) => {
               {firstName} {lastName}
             </Typography>
 
-            <Typography color={medium}>
-              {friends && friends.length} friends
-            </Typography>
+            <Typography color={medium}>{friendsCount} friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />

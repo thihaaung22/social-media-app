@@ -19,8 +19,10 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   useEffect(() => {
     if (isProfile) {
+      console.log(isProfile);
       fetchUserPosts();
     } else {
+      console.log(isProfile);
       fetchPosts();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
